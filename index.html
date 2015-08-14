@@ -1,0 +1,50 @@
+<html ng-app="movieApp">  
+	<head lang="en">
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title>Post Interview Challenge</title>
+	
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/angular.ng-grid/2.0.13/ng-grid.min.css" />
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+		<script src="//cdn.jsdelivr.net/angular.ng-grid/2.0.13/ng-grid.js"></script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/lodash/3.10.1/lodash.min.js"></script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/restangular/latest/restangular.min.js"></script>
+		<script src="//cdn.jsdelivr.net/angular.bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
+		
+		<script src="js/main.js"></script>
+	</head>
+	<body ng-controller="movieCtrl">
+		<script type="text/ng-template" id="movieContent.html">
+			<div class="modal-body">
+				<div class="modal-wrapper">
+		        	<form name="movieEditForm">
+		        		<input type="hidden" name="movieID" ng-model="movies.id">
+		        		<label class="editLabel">Title:
+		        			<input type="text" name="movieTitle" ng-model="movies.title" required>
+			        	</label>
+			        	<div role="alert">
+							<span class="error" ng-show="movieEditForm.movieTitle.$error.required">Title is Required!</span>
+						</div>
+			        	<label class="editLabel">Description:
+			        		<textarea name="movieDescription" ng-model="movies.description" required></textarea>
+			        	</label>
+			        	<div role="alert">
+							<span class="error" ng-show="movieEditForm.movieDescription.$error.required">Description is Required!</span>
+						</div>
+						<button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="movieEditForm.$invalid" >OK</button>
+					</form>
+				</div>
+			</div>
+		</script>
+		<div class="wrapper">
+			<div class"buttonDiv">
+				<button id="edit" type="button" ng-click="open()" ng-disabled="editDisabled"> Edit </button>
+			</div>
+        	<div class="gridStyle" ng-grid="gridOptions">
+			</div>
+		</div>
+	</body>
+</html>
